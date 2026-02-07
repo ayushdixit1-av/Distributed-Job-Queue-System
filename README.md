@@ -31,12 +31,12 @@ The system consists of three main components:
 
 ```mermaid
 graph TD
-    Client[Client: Postman / UI] ---|HTTP POST| API[Job API: Producer Service]
-    API ---|Push Job| Redis[(Redis: jobs_queue)]
+    Client[Client: Postman / UI] --- API[Job API: Producer Service]
+    API --- Redis[(Redis: jobs_queue)]
     
     subgraph Workers [Distributed Processing]
-        Redis ---|Poll| W1[Worker 1]
-        Redis ---|Poll| W2[Worker 2]
+        Redis --- W1[Worker 1]
+        Redis --- W2[Worker 2]
     end
 
     style Redis fill:#f96,stroke:#333,stroke-width:2px
@@ -208,7 +208,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 
 ## 📜 **License**
 
-MIT License
+  GNU GENERAL PUBLIC LICENSE Version 3
 
 ---
 
