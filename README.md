@@ -216,9 +216,6 @@ This project demonstrates:
 * Fault tolerance (retry mechanism)
 * Real-world backend engineering skills
 
-You can confidently say in interviews:
-
-> *“I built a distributed job queue system where an API enqueues background tasks into Redis, and multiple worker services process them asynchronously with retries and job status tracking.”*
 
 ---
 
