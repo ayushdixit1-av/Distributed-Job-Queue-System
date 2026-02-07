@@ -67,7 +67,7 @@ flowchart LR
 ```
 ## 🛠️ **Tech Stack**
 
-* **Backend:** Node.js (Express) / Python (FastAPI) *(choose one)*
+* **Backend:** Node.js (Express) 
 * **Message Broker:** Redis
 * **Database:** PostgreSQL / MongoDB (for job status tracking)
 * **Logging:** File-based structured logs
@@ -231,3 +231,4 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## 📜 **License**
 
   GNU GENERAL PUBLIC LICENSE Version 3
+
