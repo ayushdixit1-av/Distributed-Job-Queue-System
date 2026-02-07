@@ -28,7 +28,7 @@ The system consists of three main components:
 
 ---
 ## 🏗️ System Architecture
-
+```mermaid
 graph TD
     A[User Request] --> B{Process?}
     B -- Yes --> C[Logic Layer]
