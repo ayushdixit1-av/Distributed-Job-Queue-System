@@ -69,7 +69,7 @@ flowchart LR
 
 * **Backend:** Node.js (Express) 
 * **Message Broker:** Redis
-* **Database:** PostgreSQL / MongoDB (for job status tracking)
+* **Database:** PostgreSQL 
 * **Logging:** File-based structured logs
 
 ---
