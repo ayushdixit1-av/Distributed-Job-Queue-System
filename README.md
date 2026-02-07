@@ -29,22 +29,8 @@ The system consists of three main components:
 ---
 ## 🏗️ System Architecture
 
-┌───────────┐          1. Request          ┌──────────────┐
-       │   USER    │ ───────────────────────────> │ API SERVICE  │
-       └─────▲─────┘        (Submit Job)          └──────┬───────┘
-             │                                           │
-             │ 6. Polling / Webhook                      │ 2. Enqueue
-             │    (Check Status)                         │    (LPUSH)
-             │                                           │
-       ┌─────┴─────┐          5. Update           ┌──────▼───────┐
-       │ DATABASE  │ <─────────────────────────── │ REDIS BROKER │
-       └─────▲─────┘        (Status Change)       └──────┬───────┘
-             │                                           │
-             │                                           │ 3. Dequeue
-             │                4. Process                 │    (BRPOP)
-             └───────────────────────────────────── ┌────▼────┐
-                                                    │ WORKER  │
-                                                    └─────────┘
++--------------------+ | Client | | (Postman / UI) | +--------------------+ | v +--------------------+ | Job API | | (Producer Service) | +--------------------+ | v +--------------------+ | Redis | | (jobs_queue) | +--------------------+ / \ / \ +--------+ +--------+ |Worker 1| |Worker 2| +--------+ +--------+ | | v v +----------------------+ | Database (Logs) | | Job Status Tracking | +----------------------+
+
 ## 🛠️ **Tech Stack**
 
 * **Backend:** Node.js (Express) / Python (FastAPI) *(choose one)*
