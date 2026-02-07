@@ -28,20 +28,23 @@ The system consists of three main components:
 
 ---
 ## 🏗️ System Architecture
-```mermaid
-graph TD
-    A[User Request] --> B{Process?}
-    B -- Yes --> C[Logic Layer]
-    B -- No --> D[Error Handler]
-    
-    subgraph Tech_Stack [🛠️ Tech Stack]
-        C -.- E[Node.js]
-        C -.- F[React]
-        C -.- G[PostgreSQL]
-    end
 
-    style Tech_Stack fill:#f9f,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
----
+┌───────────┐          1. Request          ┌──────────────┐
+       │   USER    │ ───────────────────────────> │ API SERVICE  │
+       └─────▲─────┘        (Submit Job)          └──────┬───────┘
+             │                                           │
+             │ 6. Polling / Webhook                      │ 2. Enqueue
+             │    (Check Status)                         │    (LPUSH)
+             │                                           │
+       ┌─────┴─────┐          5. Update           ┌──────▼───────┐
+       │ DATABASE  │ <─────────────────────────── │ REDIS BROKER │
+       └─────▲─────┘        (Status Change)       └──────┬───────┘
+             │                                           │
+             │                                           │ 3. Dequeue
+             │                4. Process                 │    (BRPOP)
+             └───────────────────────────────────── ┌────▼────┐
+                                                    │ WORKER  │
+                                                    └─────────┘
 ## 🛠️ **Tech Stack**
 
 * **Backend:** Node.js (Express) / Python (FastAPI) *(choose one)*
