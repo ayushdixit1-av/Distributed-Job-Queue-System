@@ -29,8 +29,42 @@ The system consists of three main components:
 ---
 ## 🏗️ System Architecture
 
-+--------------------+ | Client | | (Postman / UI) | +--------------------+ | v +--------------------+ | Job API | | (Producer Service) | +--------------------+ | v +--------------------+ | Redis | | (jobs_queue) | +--------------------+ / \ / \ +--------+ +--------+ |Worker 1| |Worker 2| +--------+ +--------+ | | v v +----------------------+ | Database (Logs) | | Job Status Tracking | +----------------------+
+```mermaid
+flowchart LR
+    subgraph Client["🧑‍💻 Client Layer"]
+        A[Postman / UI]
+    end
 
+    subgraph API["🚀 Application Layer"]
+        B[Job API <br/> Producer Service]
+    end
+
+    subgraph Queue["📨 Message Queue"]
+        C[(Redis <br/> jobs_queue)]
+    end
+
+    subgraph Workers["⚙️ Worker Pool"]
+        D[Worker 1]
+        E[Worker 2]
+    end
+
+    subgraph DB["🗄️ Database Layer"]
+        F[(Database <br/> Logs + Job Status)]
+    end
+
+    A -->|Submit Job| B
+    B -->|Push Job| C
+    C -->|Consume Job| D
+    C -->|Consume Job| E
+    D -->|Write Logs / Status| F
+    E -->|Write Logs / Status| F
+
+    style Client fill:#e3f2fd,stroke:#1565c0
+    style API fill:#e8f5e9,stroke:#2e7d32
+    style Queue fill:#fff3e0,stroke:#ef6c00
+    style Workers fill:#f3e5f5,stroke:#6a1b9a
+    style DB fill:#fce4ec,stroke:#ad1457
+```
 ## 🛠️ **Tech Stack**
 
 * **Backend:** Node.js (Express) / Python (FastAPI) *(choose one)*
