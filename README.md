@@ -29,19 +29,18 @@ The system consists of three main components:
 ---
 ## 🏗️ System Architecture
 
-```mermaid
 graph TD
-    Client[Client: Postman / UI] --- API[Job API: Producer Service]
-    API --- Redis[(Redis: jobs_queue)]
+    A[User Request] --> B{Process?}
+    B -- Yes --> C[Logic Layer]
+    B -- No --> D[Error Handler]
     
-    subgraph Workers [Distributed Processing]
-        Redis --- W1[Worker 1]
-        Redis --- W2[Worker 2]
+    subgraph Tech_Stack [🛠️ Tech Stack]
+        C -.- E[Node.js]
+        C -.- F[React]
+        C -.- G[PostgreSQL]
     end
 
-    style Redis fill:#f96,stroke:#333,stroke-width:2px
-    style Workers fill:#f5f5f5,stroke:#666,stroke-dasharray: 5 5
-
+    style Tech_Stack fill:#f9f,stroke:#333,stroke-width:2px,stroke-dasharray: 5 5
 ---
 ## 🛠️ **Tech Stack**
 
