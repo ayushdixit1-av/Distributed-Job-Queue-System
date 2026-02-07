@@ -231,11 +231,3 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 ## 📜 **License**
 
   GNU GENERAL PUBLIC LICENSE Version 3
-
----
-
-If you want, I can now:
-
-* convert this into **Node.js version README**, or
-* create a **Python (FastAPI + Redis) version**
-  Just tell me your preferred language.
