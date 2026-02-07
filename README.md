@@ -99,7 +99,7 @@ distributed-job-queue/
 ├── package.json / requirements.txt
 │
 ├── api/
-│   ├── server.js / main.py
+│   ├── server.js 
 │   ├── redisClient.js
 │   ├── routes/
 │   │   └── jobRoutes.js
